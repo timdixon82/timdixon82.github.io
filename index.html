@@ -1,61 +1,335 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en-GB">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tim Dixon's Projects</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            line-height: 1.6;
-        }
-        h1 {
-            color: #333;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            margin: 10px 0;
-        }
-        a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Tim Dixon's web projects — accessible, interactive tools." />
+  <title>Tim Dixon's Projects</title>
+  <script>
+    (function () {
+      var t = localStorage.getItem('td-theme');
+      document.documentElement.dataset.theme =
+        t === 'dark' || t === 'light' ? t
+        : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    }());
+  </script>
+  <style>
+    :root {
+      --navy:   #061528;
+      --orange: #FF7C00;
+      --blue:   #63D2FF;
+
+      --bg:            #f4f6f8;
+      --bg-card:       #ffffff;
+      --fg:            #1a1a1a;
+      --fg-muted:      #4b5563;
+      --border:        #d1d5db;
+      --accent:        #061528;
+      --accent-hover:  #0a2445;
+      --accent-text:   #ffffff;
+      --shadow:        0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.05);
+      --radius:        10px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg:           #061528;
+        --bg-card:      #0d2040;
+        --fg:           #ffffff;
+        --fg-muted:     #63D2FF;
+        --border:       #1a3050;
+        --accent:       #FF7C00;
+        --accent-hover: #ff8f1a;
+        --accent-text:  #061528;
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg:           #061528;
+      --bg-card:      #0d2040;
+      --fg:           #ffffff;
+      --fg-muted:     #63D2FF;
+      --border:       #1a3050;
+      --accent:       #FF7C00;
+      --accent-hover: #ff8f1a;
+      --accent-text:  #061528;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+            "Helvetica Neue", Arial, sans-serif;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -50px;
+      left: 16px;
+      background: var(--accent);
+      color: var(--accent-text);
+      padding: 10px 16px;
+      border-radius: 0 0 8px 8px;
+      font-weight: 700;
+      z-index: 9999;
+      text-decoration: none;
+      transition: top 120ms;
+    }
+    .skip-link:focus { top: 0; }
+
+    .app-header {
+      background: #061528;
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+    }
+    .app-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #FF7C00, #ff8f1a 60%, transparent);
+      pointer-events: none;
+    }
+    .app-header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      position: relative;
+    }
+    .app-header-text { flex: 1; min-width: 0; }
+    .app-header h1 {
+      color: #ffffff;
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin: 0 0 4px;
+      letter-spacing: -0.3px;
+    }
+    .header-accent { color: #FF7C00; }
+    .app-header .tagline {
+      color: #63D2FF;
+      margin: 0;
+      font-size: 0.875rem;
+    }
+
+    .theme-toggle {
+      appearance: none;
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      color: #ffffff;
+      border-radius: 8px;
+      padding: 8px 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 600;
+      flex-shrink: 0;
+      min-height: 44px;
+      min-width: 44px;
+      transition: border-color 120ms, background 120ms;
+    }
+    .theme-toggle:hover {
+      border-color: #63D2FF;
+      background: rgba(99, 210, 255, 0.12);
+    }
+    .theme-toggle:focus-visible {
+      outline: 3px solid #63D2FF;
+      outline-offset: 3px;
+    }
+    .theme-toggle:active { transform: translateY(1px); }
+
+    .icon-sun  { display: none; }
+    .icon-moon { display: none; }
+    [data-theme="dark"]  .icon-sun  { display: block; }
+    [data-theme="light"] .icon-moon { display: block; }
+
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .page-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px 20px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .card h2 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+    .card h2 a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .card h2 a:hover {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+    .card p {
+      margin: 0;
+      font-size: 0.875rem;
+      color: var(--fg-muted);
+      line-height: 1.65;
+    }
+
+    .app-footer {
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 0.8rem;
+      color: var(--fg-muted);
+      border-top: 1px solid var(--border);
+    }
+    .app-footer a {
+      color: inherit;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      body { font-size: 14px; }
+      .app-header h1 { font-size: 1.2rem; }
+      .project-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Tim Dixon's Projects</h1>
-    <ul>
-        <li>
-            <a href="/Braille-Reference">Braille Reference</a>
-            <p>An accessible braille reference for UEB Grade 1 and Grade 2.</p>
-        </li>
-        <li>
-            <a href="/Clock-Practice">Clock Practice</a>
-            <p>An interactive HTML page for practicing telling the time with an analogue clock.</p>
-        </li>
-        <li>
-            <a href="/LLBS-Braile-Name-Generator">LLBS Braille Name Generator</a>
-            <p>A braille name generator built for the Lincoln and Lindsey Blind Society.</p>
-        </li>
-        <li>
-            <a href="/Periodic-Table">Periodic Table</a>
-            <p>An accessible interactive periodic table.</p>
-        </li>
-        <li>
-            <a href="/Poop-Breakout">Poop Breakout</a>
-            <p>A Poop themed Breakout Game.</p>
-        </li>
-        <li>
-            <a href="/LLBS">LLBS</a>
-            <p>LLBS Repo for LLBS Projects.</p>
-        </li>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="app-header">
+    <div class="app-header-inner">
+      <div class="app-header-text">
+        <h1>Tim Dixon's <span class="header-accent">Projects</span></h1>
+        <p class="tagline">Accessible, interactive web tools.</p>
+      </div>
+      <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch to dark mode">
+        <svg class="icon-sun" width="20" height="20" aria-hidden="true" focusable="false"
+             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/>
+          <line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/>
+          <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
+          <line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/>
+          <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
+        </svg>
+        <svg class="icon-moon" width="20" height="20" aria-hidden="true" focusable="false"
+             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <span class="theme-toggle-label" aria-hidden="true"></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content" class="page-content">
+    <ul class="project-grid">
+      <li class="card">
+        <h2><a href="/Braille-Reference">Braille Reference</a></h2>
+        <p>An accessible braille reference for UEB Grade 1 and Grade 2.</p>
+      </li>
+      <li class="card">
+        <h2><a href="/Clock-Practice">Clock Practice</a></h2>
+        <p>An interactive HTML page for practising telling the time with an analogue clock.</p>
+      </li>
+      <li class="card">
+        <h2><a href="/Image-Colour-Contrast-Checker">Image Colour Contrast Checker</a></h2>
+        <p>A tool for checking colour contrast ratios within images.</p>
+      </li>
+      <li class="card">
+        <h2><a href="/LLBS-Braile-Name-Generator">LLBS Braille Name Generator</a></h2>
+        <p>A braille name generator built for the Lincoln and Lindsey Blind Society.</p>
+      </li>
+      <li class="card">
+        <h2><a href="/LLBS">LLBS</a></h2>
+        <p>LLBS Repo for LLBS Projects.</p>
+      </li>
+      <li class="card">
+        <h2><a href="/Periodic-Table">Periodic Table</a></h2>
+        <p>An accessible interactive periodic table.</p>
+      </li>
+      <li class="card">
+        <h2><a href="/Poop-Breakout">Poop Breakout</a></h2>
+        <p>A poop-themed Breakout game.</p>
+      </li>
+      <li class="card">
+        <h2><a href="/Social-Media-Accessibility-Checker-Extension">Social Media Accessibility Checker</a></h2>
+        <p>A browser extension to check a post's accessibility, including colour contrast in images.</p>
+      </li>
     </ul>
+  </main>
+
+  <footer class="app-footer">
+    <a href="https://timdixon.net" target="_blank" rel="noopener noreferrer">© Tim Dixon</a>
+  </footer>
+
+  <script>
+    const STORAGE_KEY = 'td-theme';
+    const html        = document.documentElement;
+    const toggleBtn   = document.getElementById('theme-toggle');
+    const toggleLabel = toggleBtn.querySelector('.theme-toggle-label');
+
+    function syncToggle() {
+      const isDark = html.dataset.theme === 'dark';
+      toggleBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      toggleLabel.textContent = isDark ? 'Light' : 'Dark';
+    }
+
+    function setTheme(theme, persist) {
+      html.dataset.theme = theme;
+      if (persist) localStorage.setItem(STORAGE_KEY, theme);
+      syncToggle();
+    }
+
+    syncToggle();
+
+    toggleBtn.addEventListener('click', () => {
+      setTheme(html.dataset.theme === 'dark' ? 'light' : 'dark', true);
+    });
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (!localStorage.getItem(STORAGE_KEY)) setTheme(e.matches ? 'dark' : 'light', false);
+    });
+  </script>
+
 </body>
 </html>
