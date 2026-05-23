@@ -34,6 +34,10 @@ Security and accessibility gaps that have been assessed and accepted. The GitHub
 
 - [GitHub Pages security-header gap](exceptions/github-pages-headers.md): pointer to the team's standing exception in the global wiki.
 
+### Privacy
+
+- [Privacy](privacy.md): analytics posture, GoatCounter implementation, and data collection statement. This project uses the team default `timdixon82.goatcounter.com` site.
+
 ### Outstanding items
 
 - [Todo list](../todo.md): items outstanding from the setup backfill and items deferred for later phases.
