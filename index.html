@@ -25,7 +25,7 @@
       --bg:            #f4f6f8;
       --bg-card:       #ffffff;
       --fg:            #1a1a1a;
-      --fg-muted:      #4b5563;
+      --fg-muted:      #374151;
       --border:        #d1d5db;
       --accent:        #061528;
       --accent-hover:  #0a2445;
@@ -37,7 +37,7 @@
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme="light"]) {
         --bg:           #061528;
-        --bg-card:      #0d2040;
+        --bg-card:      #061528;
         --fg:           #ffffff;
         --fg-muted:     #63D2FF;
         --border:       #1a3050;
@@ -49,7 +49,7 @@
 
     :root[data-theme="dark"] {
       --bg:           #061528;
-      --bg-card:      #0d2040;
+      --bg-card:      #061528;
       --fg:           #ffffff;
       --fg-muted:     #63D2FF;
       --border:       #1a3050;
@@ -195,6 +195,10 @@
     .card h2 a {
       color: var(--accent);
       text-decoration: none;
+      display: inline-block;
+      padding: 8px 0;
+      min-height: 44px;
+      min-width: 44px;
     }
     .card h2 a:hover {
       color: var(--accent-hover);
@@ -223,6 +227,18 @@
       body { font-size: 14px; }
       .app-header h1 { font-size: 1.2rem; }
       .project-grid { grid-template-columns: 1fr; }
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -264,10 +280,10 @@
   </header>
 
   <main id="main-content" class="page-content">
-    <ul class="project-grid">
+    <ul class="project-grid" role="list">
       <li class="card">
         <h2><a href="/Braille-Reference">Braille Reference</a></h2>
-        <p>An accessible braille reference for UEB Grade 1 and Grade 2.</p>
+        <p>An accessible braille reference for <abbr title="Unified English Braille">UEB</abbr> (Unified English Braille) Grade 1 and Grade 2.</p>
       </li>
       <li class="card">
         <h2><a href="/Clock-Practice">Clock Practice</a></h2>
@@ -278,11 +294,11 @@
         <p>A tool for checking colour contrast ratios within images.</p>
       </li>
       <li class="card">
-        <h2><a href="/LLBS-Braile-Name-Generator">LLBS Braille Name Generator</a></h2>
-        <p>A braille name generator built for the Lincoln and Lindsey Blind Society.</p>
+        <h2><a href="/LLBS-Braille-Name-Generator"><abbr title="Lincoln and Lindsey Blind Society">LLBS</abbr> Braille Name Generator</a></h2>
+        <p>A braille name generator built for the <abbr title="Lincoln and Lindsey Blind Society">LLBS</abbr> (Lincoln and Lindsey Blind Society).</p>
       </li>
       <li class="card">
-        <h2><a href="/LLBS">LLBS</a></h2>
+        <h2><a href="/LLBS"><abbr title="Lincoln and Lindsey Blind Society">LLBS</abbr></a></h2>
         <p>LLBS Repo for LLBS Projects.</p>
       </li>
       <li class="card">
@@ -301,7 +317,7 @@
   </main>
 
   <footer class="app-footer">
-    <a href="https://timdixon.net" target="_blank" rel="noopener noreferrer">© Tim Dixon</a>
+    <a href="https://timdixon.net" target="_blank" rel="noopener noreferrer">© Tim Dixon<span class="visually-hidden"> (opens in new window)</span></a>
   </footer>
 
   <script>
