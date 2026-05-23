@@ -34,8 +34,6 @@ These items are part of the current setup build and must be resolved before the 
 
 14. Add a `package.json` (marked `"private": true`) with the project's linters pinned as `devDependencies`, and a `package-lock.json`. Set up the lint and accessibility workflows in `.github/workflows/`. Per the standing standard in `AgentTeam/docs/decisions/006-adopted-static-project-standards.md` (standard 4).
 
-15. Get Tim's sign-off on the security exception record at `docs/exceptions/security-header-gaps.md`. The exception is not valid without Tim's explicit approval.
-
 ## Deferred to later phases
 
 These items are recorded but not part of the current setup build. They are raised here so they are not lost.

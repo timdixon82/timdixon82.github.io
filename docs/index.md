@@ -30,9 +30,9 @@ Architecture Decision Records for this project, in the order Jacob recorded them
 
 ### Exceptions
 
-Security and accessibility gaps that have been assessed and accepted.
+Security and accessibility gaps that have been assessed and accepted. The GitHub Pages security-header exception is covered by the team's standing exception, approved by Tim on 2026-05-23.
 
-- [Security exception: missing HTTP response headers](exceptions/security-header-gaps.md)
+- [GitHub Pages security-header gap](exceptions/github-pages-headers.md): pointer to the team's standing exception in the global wiki.
 
 ### Outstanding items
 
