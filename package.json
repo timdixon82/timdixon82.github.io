@@ -1,0 +1,20 @@
+{
+  "name": "timdixon82-github-io",
+  "version": "0.1.0",
+  "description": "Tim Dixon's project-index landing page at projects.timdixon.net.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint:html": "html-validate index.html",
+    "lint:css": "stylelint \"**/*.css\" --ignore-pattern \"node_modules/**\" --allow-empty-input",
+    "lint:js": "eslint .",
+    "lint": "npm run lint:html && npm run lint:css && npm run lint:js"
+  },
+  "devDependencies": {
+    "eslint": "^9.26.0",
+    "globals": "^16.0.0",
+    "html-validate": "^11.2.0",
+    "stylelint": "^16.19.1",
+    "stylelint-config-standard": "^38.0.0"
+  }
+}
