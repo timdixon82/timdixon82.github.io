@@ -2,6 +2,8 @@
 <html lang="en-GB">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'none'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="light dark" />
   <meta name="description" content="Tim Dixon's web projects — accessible, interactive tools." />
@@ -330,6 +332,11 @@
       if (!localStorage.getItem(STORAGE_KEY)) setTheme(e.matches ? 'dark' : 'light', false);
     });
   </script>
+
+  <script
+    data-goatcounter="__TIMDIXON82_GITHUB_IO_TRACKER_PLACEHOLDER__"
+    async
+    src="./assets/analytics/count.js"></script>
 
 </body>
 </html>
