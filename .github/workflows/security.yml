@@ -28,7 +28,10 @@ jobs:
       - name: Semgrep
         run: |
           pip install semgrep
-          semgrep ci
+          # semgrep scan runs locally with the default ruleset and exits non-zero
+          # on any finding. semgrep ci requires a SEMGREP_APP_TOKEN and uses
+          # cloud-based CI mode; it is not used here to avoid token dependency.
+          semgrep scan --config p/default --error
 
   trivy:
     name: Trivy
