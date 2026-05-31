@@ -4,7 +4,7 @@
 
 Adopt the existing `timdixon82/timdixon82.github.io` repository as a team project. This is Tim's main GitHub Pages site, served at `projects.timdixon.net`, and the landing point above the project pages such as Periodic-Table and Clock-Practice. Current state: a single `index.html` and a `CNAME` domain file. Set up the project wiki, backfill the missing reviews, add the team's repository configuration, and verify the site meets the team's standards. Triaged as an adopt-and-backfill job, the same pattern as Periodic-Table, Clock-Practice, and LLBS.
 
-- Status: done
+- Status: archived
 - Branch: chore/project-setup
 - Priority: 9
 - Blockers: None
