@@ -4,7 +4,7 @@
 
 Apply the Tim Dixon Design System (version 2026-06-08b) to the site for the first time, and update the project card listing to include all public GitHub repositories.
 
-- Status: active
+- Status: done
 - Branch: feat/design-system-update
 - Priority: 8
 - Blockers: None
