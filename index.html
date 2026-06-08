@@ -8,64 +8,18 @@
   <meta name="color-scheme" content="light dark">
   <meta name="description" content="Tim Dixon's web projects — accessible, interactive tools.">
   <title>Tim Dixon's Projects</title>
-  <script>
-    (function () {
-      var t = localStorage.getItem('td-theme');
-      document.documentElement.dataset.theme =
-        t === 'dark' || t === 'light' ? t
-        : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    }());
-  </script>
+  <script src="assets/theme.js"></script>
+  <link rel="stylesheet" href="assets/colors_and_type.css">
   <style>
-    :root {
-      --navy:   #061528;
-      --orange: #FF7C00;
-      --blue:   #63D2FF;
-
-      --bg:            #f4f6f8;
-      --bg-card:       #ffffff;
-      --fg:            #1a1a1a;
-      --fg-muted:      #374151;
-      --border:        #d1d5db;
-      --accent:        #061528;
-      --accent-hover:  #0a2445;
-      --accent-text:   #ffffff;
-      --shadow:        0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.05);
-      --radius:        10px;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) {
-        --bg:           #061528;
-        --bg-card:      #061528;
-        --fg:           #ffffff;
-        --fg-muted:     #63D2FF;
-        --border:       #1a3050;
-        --accent:       #FF7C00;
-        --accent-hover: #ff8f1a;
-        --accent-text:  #061528;
-      }
-    }
-
-    :root[data-theme="dark"] {
-      --bg:           #061528;
-      --bg-card:      #061528;
-      --fg:           #ffffff;
-      --fg-muted:     #63D2FF;
-      --border:       #1a3050;
-      --accent:       #FF7C00;
-      --accent-hover: #ff8f1a;
-      --accent-text:  #061528;
-    }
-
     *, *::before, *::after { box-sizing: border-box; }
 
     body {
       margin: 0;
       background: var(--bg);
       color: var(--fg);
-      font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-            "Helvetica Neue", Arial, sans-serif;
+      font-family: var(--font-sans);
+      font-size: var(--text-base);
+      line-height: var(--leading-body);
     }
 
     .skip-link {
@@ -84,7 +38,7 @@
     .skip-link:focus { top: 0; }
 
     .app-header {
-      background: #061528;
+      background: var(--brand-navy);
       color: #ffffff;
       position: relative;
       overflow: hidden;
@@ -94,7 +48,7 @@
       position: absolute;
       bottom: 0; left: 0; right: 0;
       height: 3px;
-      background: linear-gradient(90deg, #FF7C00, #ff8f1a 60%, transparent);
+      background: linear-gradient(90deg, var(--brand-orange), transparent);
       pointer-events: none;
     }
     .app-header-inner {
@@ -115,11 +69,18 @@
       margin: 0 0 4px;
       letter-spacing: -0.3px;
     }
-    .header-accent { color: #FF7C00; }
+    .header-accent { color: var(--brand-orange); }
     .app-header .tagline {
-      color: #63D2FF;
+      color: #ffffff;
       margin: 0;
       font-size: 0.875rem;
+    }
+
+    .theme-controls {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+      align-items: center;
     }
 
     .theme-toggle {
@@ -142,19 +103,21 @@
       transition: border-color 120ms, background 120ms;
     }
     .theme-toggle:hover {
-      border-color: #63D2FF;
-      background: rgba(99, 210, 255, 0.12);
+      border-color: var(--brand-sky);
+      background: rgba(82, 199, 235, 0.12);
     }
     .theme-toggle:focus-visible {
-      outline: 3px solid #63D2FF;
+      outline: 3px solid var(--brand-sky);
       outline-offset: 3px;
     }
     .theme-toggle:active { transform: translateY(1px); }
 
     .icon-sun  { display: none; }
     .icon-moon { display: none; }
-    [data-theme="dark"]  .icon-sun  { display: block; }
-    [data-theme="light"] .icon-moon { display: block; }
+    [data-theme="dark"] .icon-sun,
+    [data-theme="muted-dark"] .icon-sun  { display: block; }
+    [data-theme="light"] .icon-moon,
+    [data-theme="muted-light"] .icon-moon { display: block; }
 
     :focus-visible {
       outline: 3px solid var(--accent);
@@ -259,23 +222,26 @@
         <h1>Tim Dixon's <span class="header-accent">Projects</span></h1>
         <p class="tagline">Accessible, interactive web tools.</p>
       </div>
-      <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Switch to dark mode">
-        <svg class="icon-sun" width="20" height="20" aria-hidden="true" focusable="false"
-             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-             stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"/>
-          <line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/>
-          <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
-          <line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/>
-          <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
-        </svg>
-        <svg class="icon-moon" width="20" height="20" aria-hidden="true" focusable="false"
-             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-             stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
-        <span class="theme-toggle-label" aria-hidden="true"></span>
-      </button>
+      <div class="theme-controls" role="group" aria-label="Theme controls">
+        <button type="button" id="theme-mode-toggle" class="theme-toggle" aria-label="Switch to dark mode">
+          <svg class="icon-sun" width="20" height="20" aria-hidden="true" focusable="false"
+               viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/>
+            <line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/>
+            <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
+            <line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/>
+            <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
+          </svg>
+          <svg class="icon-moon" width="20" height="20" aria-hidden="true" focusable="false"
+               viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <span class="theme-toggle-label" aria-hidden="true"></span>
+        </button>
+        <button type="button" id="theme-family-toggle" class="theme-toggle" aria-label="Switch to muted colours">Muted</button>
+      </div>
     </div>
   </header>
 
@@ -290,16 +256,20 @@
         <p>An interactive HTML page for practising telling the time with an analogue clock.</p>
       </li>
       <li class="card">
-        <h2><a href="/Image-Colour-Contrast-Checker">Image Colour Contrast Checker</a></h2>
+        <h2><a href="https://timdixon82.github.io/Image-Colour-Contrast-Checker/">Image Colour Contrast Checker</a></h2>
         <p>A tool for checking colour contrast ratios within images.</p>
       </li>
       <li class="card">
-        <h2><a href="/LLBS-Braille-Name-Generator"><abbr title="Lincoln and Lindsey Blind Society">LLBS</abbr> Braille Name Generator</a></h2>
-        <p>A braille name generator built for the <abbr title="Lincoln and Lindsey Blind Society">LLBS</abbr> (Lincoln and Lindsey Blind Society).</p>
+        <h2><a href="https://github.com/timdixon82/James-Nerf-Squad" target="_blank" rel="noopener noreferrer">James Nerf Squad<span class="visually-hidden"> (opens in new window)</span></a></h2>
+        <p>A platform game where you play James and lead a nerf squad through missions against big bosses.</p>
+      </li>
+      <li class="card">
+        <h2><a href="https://projects.timdixon.net/LLBS-Braille-Name-Generator/"><abbr title="Lincoln and Lindsey Blind Society">LLBS</abbr> Braille Name Generator</a></h2>
+        <p>A braille name generator built for <abbr title="Lincoln and Lindsey Blind Society">LLBS</abbr> (Lincoln and Lindsey Blind Society).</p>
       </li>
       <li class="card">
         <h2><a href="/LLBS"><abbr title="Lincoln and Lindsey Blind Society">LLBS</abbr> Living Well Together Strategy</a></h2>
-        <p>The Living Well Together Strategy site for <abbr title="Lincoln and Lindsey Blind Society">LLBS</abbr>. Includes the LLBS Photo Brander tool.</p>
+        <p>The Living Well Together Strategy site for <abbr title="Lincoln and Lindsey Blind Society">LLBS</abbr> (Lincoln and Lindsey Blind Society). Includes the LLBS Photo Brander tool.</p>
       </li>
       <li class="card">
         <h2><a href="/Periodic-Table">Periodic Table</a></h2>
@@ -313,6 +283,14 @@
         <h2><a href="/Social-Media-Accessibility-Checker-Extension">Social Media Accessibility Checker</a></h2>
         <p>A browser extension to check a post's accessibility, including colour contrast in images.</p>
       </li>
+      <li class="card">
+        <h2><a href="https://github.com/timdixon82/sophies-escape-witchs-castle" target="_blank" rel="noopener noreferrer">Sophie's Escape: The Witch's Castle<span class="visually-hidden"> (opens in new window)</span></a></h2>
+        <p>A first-person browser 3D puzzle adventure. Ten rooms, inventory and hint system, full keyboard and touchscreen support, WCAG 2.2 AAA accessibility target.</p>
+      </li>
+      <li class="card">
+        <h2><a href="https://github.com/timdixon82/SWOT-Builder" target="_blank" rel="noopener noreferrer"><abbr title="Strengths, Weaknesses, Opportunities, Threats">SWOT</abbr> Builder<span class="visually-hidden"> (opens in new window)</span></a></h2>
+        <p>A guided <abbr title="Strengths, Weaknesses, Opportunities, Threats">SWOT</abbr> analysis interview that runs entirely in your browser. No server, no account, no data leaving your device.</p>
+      </li>
     </ul>
   </main>
 
@@ -323,31 +301,40 @@
   </footer>
 
   <script>
-    const STORAGE_KEY = 'td-theme';
-    const html        = document.documentElement;
-    const toggleBtn   = document.getElementById('theme-toggle');
-    const toggleLabel = toggleBtn.querySelector('.theme-toggle-label');
+    const html      = document.documentElement;
+    const modeBtn   = document.getElementById('theme-mode-toggle');
+    const familyBtn = document.getElementById('theme-family-toggle');
+    const modeLabel = modeBtn.querySelector('.theme-toggle-label');
 
     function syncToggle() {
-      const isDark = html.dataset.theme === 'dark';
-      toggleBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-      toggleLabel.textContent = isDark ? 'Light' : 'Dark';
-    }
+      const theme   = window.tdTheme.get();
+      const isDark  = theme === 'dark' || theme === 'muted-dark';
+      const isMuted = theme.startsWith('muted-');
 
-    function setTheme(theme, persist) {
-      html.dataset.theme = theme;
-      if (persist) localStorage.setItem(STORAGE_KEY, theme);
-      syncToggle();
+      modeBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+      modeLabel.textContent = isDark ? 'Light' : 'Dark';
+
+      familyBtn.setAttribute('aria-label', isMuted ? 'Switch to vivid colours' : 'Switch to muted colours');
+      familyBtn.textContent = isMuted ? 'Vivid' : 'Muted';
     }
 
     syncToggle();
 
-    toggleBtn.addEventListener('click', () => {
-      setTheme(html.dataset.theme === 'dark' ? 'light' : 'dark', true);
+    modeBtn.addEventListener('click', () => {
+      window.tdTheme.toggleMode();
+      syncToggle();
+    });
+
+    familyBtn.addEventListener('click', () => {
+      window.tdTheme.toggleFamily();
+      syncToggle();
     });
 
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      if (!localStorage.getItem(STORAGE_KEY)) setTheme(e.matches ? 'dark' : 'light', false);
+      if (!localStorage.getItem('td-theme')) {
+        html.dataset.theme = e.matches ? 'dark' : 'light';
+        syncToggle();
+      }
     });
   </script>
 
