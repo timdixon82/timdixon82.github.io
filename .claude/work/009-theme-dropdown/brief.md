@@ -4,7 +4,7 @@
 
 Replace the two theme toggle buttons in the page header with a single accessible `<select>` dropdown offering all four Tim Dixon Design System themes.
 
-- Status: active
+- Status: done
 - Branch: feat/theme-dropdown
 - Priority: 8
 - Blockers: None
