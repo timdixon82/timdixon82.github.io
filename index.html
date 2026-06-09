@@ -83,41 +83,31 @@
       align-items: center;
     }
 
-    .theme-toggle {
-      appearance: none;
-      background: transparent;
-      border: 2px solid rgba(255, 255, 255, 0.35);
+    .theme-select {
+      border: 2px solid rgba(255, 255, 255, 0.4);
       color: #ffffff;
       border-radius: 8px;
       padding: 8px 14px;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
       font-family: inherit;
       font-size: 0.875rem;
       font-weight: 600;
       flex-shrink: 0;
       min-height: 44px;
-      min-width: 44px;
-      transition: border-color 120ms, background 120ms;
+      transition: border-color 120ms, background-color 120ms;
     }
-    .theme-toggle:hover {
+    .theme-select:hover {
       border-color: var(--brand-sky);
-      background: rgba(82, 199, 235, 0.12);
+      background-color: rgba(82, 199, 235, 0.12);
     }
-    .theme-toggle:focus-visible {
+    .theme-select:focus-visible {
       outline: 3px solid var(--brand-sky);
       outline-offset: 3px;
     }
-    .theme-toggle:active { transform: translateY(1px); }
-
-    .icon-sun  { display: none; }
-    .icon-moon { display: none; }
-    [data-theme="dark"] .icon-sun,
-    [data-theme="muted-dark"] .icon-sun  { display: block; }
-    [data-theme="light"] .icon-moon,
-    [data-theme="muted-light"] .icon-moon { display: block; }
+    .theme-select option {
+      background: #0C3B64;
+      color: #ffffff;
+    }
 
     :focus-visible {
       outline: 3px solid var(--accent);
@@ -222,25 +212,14 @@
         <h1>Tim Dixon's <span class="header-accent">Projects</span></h1>
         <p class="tagline">Accessible, interactive web tools.</p>
       </div>
-      <div class="theme-controls" role="group" aria-label="Theme controls">
-        <button type="button" id="theme-mode-toggle" class="theme-toggle" aria-label="Switch to dark mode">
-          <svg class="icon-sun" width="20" height="20" aria-hidden="true" focusable="false"
-               viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="4"/>
-            <line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/>
-            <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/>
-            <line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/>
-            <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/>
-          </svg>
-          <svg class="icon-moon" width="20" height="20" aria-hidden="true" focusable="false"
-               viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-               stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-          </svg>
-          <span class="theme-toggle-label" aria-hidden="true"></span>
-        </button>
-        <button type="button" id="theme-family-toggle" class="theme-toggle" aria-label="Switch to muted colours">Muted</button>
+      <div class="theme-controls">
+        <label for="theme-select" class="visually-hidden">Colour theme</label>
+        <select id="theme-select" class="theme-select">
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+          <option value="muted-light">Muted light</option>
+          <option value="muted-dark">Muted dark</option>
+        </select>
       </div>
     </div>
   </header>
@@ -301,41 +280,25 @@
   </footer>
 
   <script>
-    const html      = document.documentElement;
-    const modeBtn   = document.getElementById('theme-mode-toggle');
-    const familyBtn = document.getElementById('theme-family-toggle');
-    const modeLabel = modeBtn.querySelector('.theme-toggle-label');
+    (function () {
+      var select = document.getElementById('theme-select');
 
-    function syncToggle() {
-      const theme   = window.tdTheme.get();
-      const isDark  = theme === 'dark' || theme === 'muted-dark';
-      const isMuted = theme.startsWith('muted-');
-
-      modeBtn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-      modeLabel.textContent = isDark ? 'Light' : 'Dark';
-
-      familyBtn.setAttribute('aria-label', isMuted ? 'Switch to vivid colours' : 'Switch to muted colours');
-      familyBtn.textContent = isMuted ? 'Vivid' : 'Muted';
-    }
-
-    syncToggle();
-
-    modeBtn.addEventListener('click', () => {
-      window.tdTheme.toggleMode();
-      syncToggle();
-    });
-
-    familyBtn.addEventListener('click', () => {
-      window.tdTheme.toggleFamily();
-      syncToggle();
-    });
-
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      if (!localStorage.getItem('td-theme')) {
-        html.dataset.theme = e.matches ? 'dark' : 'light';
-        syncToggle();
+      function syncSelect() {
+        select.value = window.tdTheme.get();
       }
-    });
+
+      syncSelect();
+
+      select.addEventListener('change', function () {
+        window.tdTheme.set(select.value);
+      });
+
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
+        if (!localStorage.getItem('td-theme')) {
+          syncSelect();
+        }
+      });
+    }());
   </script>
 
   <script
