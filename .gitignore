@@ -62,3 +62,8 @@ Inputs/
 
 # CI-only Pa11y config, derived from pa11y.json in the accessibility workflow. Generated, never committed.
 pa11y.ci.json
+
+# Playwright MCP working directory and test screenshots left by Carol's browser testing.
+# These are ephemeral test artefacts, not project assets.
+.playwright-mcp/
+*.png
