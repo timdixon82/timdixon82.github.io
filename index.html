@@ -138,30 +138,52 @@
       box-shadow: var(--shadow);
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: var(--space-2);
     }
     .card h2 {
       margin: 0;
       font-size: 1.1rem;
       font-weight: 600;
     }
-    .card h2 a {
-      color: var(--accent);
-      text-decoration: none;
-      display: inline-block;
-      padding: 8px 0;
-      min-height: 44px;
-      min-width: 44px;
-    }
-    .card h2 a:hover {
-      color: var(--accent-hover);
-      text-decoration: underline;
-    }
     .card p {
       margin: 0;
       font-size: 0.875rem;
       color: var(--fg-muted);
       line-height: 1.65;
+    }
+
+    .card-links {
+      display: flex;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+      margin-top: auto;
+      padding-top: var(--space-2);
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: var(--hit);
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: var(--text-sm);
+      font-weight: var(--weight-semi);
+      text-decoration: none;
+      border: 1.5px solid var(--border);
+      color: var(--accent);
+      background: transparent;
+      transition: background 120ms, border-color 120ms;
+    }
+
+    .card-link:hover {
+      background: var(--accent-subtle);
+      border-color: var(--accent);
+      text-decoration: none;
+    }
+
+    .card-link:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
     }
 
     .app-footer {
@@ -227,48 +249,196 @@
   <main id="main-content" class="page-content">
     <ul class="project-grid" role="list">
       <li class="card">
-        <h2><a href="/Braille-Reference">Braille Reference</a></h2>
+        <h2>Braille Reference</h2>
         <p>An accessible braille reference for <abbr title="Unified English Braille">UEB</abbr> (Unified English Braille) Grade 1 and Grade 2.</p>
+        <div class="card-links">
+          <a href="https://projects.timdixon.net/Braille-Reference/"
+             class="card-link card-link--live"
+             aria-label="Braille Reference — live site"
+             target="_blank" rel="noopener noreferrer">
+            Live site<span class="visually-hidden"> (opens in new window)</span>
+          </a>
+          <a href="https://github.com/timdixon82/Braille-Reference"
+             class="card-link card-link--github"
+             aria-label="Braille Reference on GitHub"
+             target="_blank" rel="noopener noreferrer">
+            GitHub<span class="visually-hidden"> (opens in new window)</span>
+          </a>
+        </div>
       </li>
       <li class="card">
-        <h2><a href="/Clock-Practice">Clock Practice</a></h2>
+        <h2>Clock Practice</h2>
         <p>An interactive HTML page for practising telling the time with an analogue clock.</p>
+        <div class="card-links">
+          <a href="https://projects.timdixon.net/Clock-Practice/"
+             class="card-link card-link--live"
+             aria-label="Clock Practice — live site"
+             target="_blank" rel="noopener noreferrer">
+            Live site<span class="visually-hidden"> (opens in new window)</span>
+          </a>
+          <a href="https://github.com/timdixon82/Clock-Practice"
+             class="card-link card-link--github"
+             aria-label="Clock Practice on GitHub"
+             target="_blank" rel="noopener noreferrer">
+            GitHub<span class="visually-hidden"> (opens in new window)</span>
+          </a>
+        </div>
       </li>
       <li class="card">
-        <h2><a href="https://timdixon82.github.io/Image-Colour-Contrast-Checker/">Image Colour Contrast Checker</a></h2>
+        <h2>Image Colour Contrast Checker</h2>
         <p>A tool for checking colour contrast ratios within images.</p>
+        <div class="card-links">
+          <a href="https://timdixon82.github.io/Image-Colour-Contrast-Checker/"
+             class="card-link card-link--live"
+             aria-label="Image Colour Contrast Checker — live site"
+             target="_blank" rel="noopener noreferrer">
+            Live site<span class="visually-hidden"> (opens in new window)</span>
+          </a>
+          <a href="https://github.com/timdixon82/Image-Colour-Contrast-Checker"
+             class="card-link card-link--github"
+             aria-label="Image Colour Contrast Checker on GitHub"
+             target="_blank" rel="noopener noreferrer">
+            GitHub<span class="visually-hidden"> (opens in new window)</span>
+          </a>
+        </div>
       </li>
       <li class="card">
-        <h2><a href="https://github.com/timdixon82/James-Nerf-Squad" target="_blank" rel="noopener noreferrer">James Nerf Squad<span class="visually-hidden"> (opens in new window)</span></a></h2>
+        <h2>James Nerf Squad</h2>
         <p>A platform game where you play James and lead a nerf squad through missions against big bosses.</p>
+        <div class="card-links">
+          <a href="https://projects.timdixon.net/James-Nerf-Squad/"
+             class="card-link card-link--live"
+             aria-label="James Nerf Squad — live site"
+             target="_blank" rel="noopener noreferrer">
+            Live site<span class="visually-hidden"> (opens in new window)</span>
+          </a>
+          <a href="https://github.com/timdixon82/James-Nerf-Squad"
+             class="card-link card-link--github"
+             aria-label="James Nerf Squad on GitHub"
+             target="_blank" rel="noopener noreferrer">
+            GitHub<span class="visually-hidden"> (opens in new window)</span>
+          </a>
+        </div>
       </li>
       <li class="card">
-        <h2><a href="https://projects.timdixon.net/LLBS-Braille-Name-Generator/"><abbr title="Lincoln and Lindsey Blind Society">LLBS</abbr> Braille Name Generator</a></h2>
+        <h2><abbr title="Lincoln and Lindsey Blind Society">LLBS</abbr> Braille Name Generator</h2>
         <p>A braille name generator built for <abbr title="Lincoln and Lindsey Blind Society">LLBS</abbr> (Lincoln and Lindsey Blind Society).</p>
+        <div class="card-links">
+          <a href="https://projects.timdixon.net/LLBS-Braille-Name-Generator/"
+             class="card-link card-link--live"
+             aria-label="LLBS Braille Name Generator — live site"
+             target="_blank" rel="noopener noreferrer">
+            Live site<span class="visually-hidden"> (opens in new window)</span>
+          </a>
+          <a href="https://github.com/timdixon82/LLBS-Braille-Name-Generator"
+             class="card-link card-link--github"
+             aria-label="LLBS Braille Name Generator on GitHub"
+             target="_blank" rel="noopener noreferrer">
+            GitHub<span class="visually-hidden"> (opens in new window)</span>
+          </a>
+        </div>
       </li>
       <li class="card">
-        <h2><a href="/LLBS"><abbr title="Lincoln and Lindsey Blind Society">LLBS</abbr> Living Well Together Strategy</a></h2>
+        <h2><abbr title="Lincoln and Lindsey Blind Society">LLBS</abbr> Living Well Together Strategy</h2>
         <p>The Living Well Together Strategy site for <abbr title="Lincoln and Lindsey Blind Society">LLBS</abbr> (Lincoln and Lindsey Blind Society). Includes the LLBS Photo Brander tool.</p>
+        <div class="card-links">
+          <a href="https://projects.timdixon.net/LLBS/"
+             class="card-link card-link--live"
+             aria-label="LLBS Living Well Together Strategy — live site"
+             target="_blank" rel="noopener noreferrer">
+            Live site<span class="visually-hidden"> (opens in new window)</span>
+          </a>
+          <a href="https://github.com/timdixon82/LLBS"
+             class="card-link card-link--github"
+             aria-label="LLBS Living Well Together Strategy on GitHub"
+             target="_blank" rel="noopener noreferrer">
+            GitHub<span class="visually-hidden"> (opens in new window)</span>
+          </a>
+        </div>
       </li>
       <li class="card">
-        <h2><a href="/Periodic-Table">Periodic Table</a></h2>
+        <h2>Periodic Table</h2>
         <p>An accessible interactive periodic table.</p>
+        <div class="card-links">
+          <a href="https://projects.timdixon.net/Periodic-Table/"
+             class="card-link card-link--live"
+             aria-label="Periodic Table — live site"
+             target="_blank" rel="noopener noreferrer">
+            Live site<span class="visually-hidden"> (opens in new window)</span>
+          </a>
+          <a href="https://github.com/timdixon82/Periodic-Table"
+             class="card-link card-link--github"
+             aria-label="Periodic Table on GitHub"
+             target="_blank" rel="noopener noreferrer">
+            GitHub<span class="visually-hidden"> (opens in new window)</span>
+          </a>
+        </div>
       </li>
       <li class="card">
-        <h2><a href="/Poop-Breakout">Poop Breakout</a></h2>
+        <h2>Poop Breakout</h2>
         <p>A poop-themed Breakout game.</p>
+        <div class="card-links">
+          <a href="https://projects.timdixon.net/Poop-Breakout/"
+             class="card-link card-link--live"
+             aria-label="Poop Breakout — live site"
+             target="_blank" rel="noopener noreferrer">
+            Live site<span class="visually-hidden"> (opens in new window)</span>
+          </a>
+          <a href="https://github.com/timdixon82/Poop-Breakout"
+             class="card-link card-link--github"
+             aria-label="Poop Breakout on GitHub"
+             target="_blank" rel="noopener noreferrer">
+            GitHub<span class="visually-hidden"> (opens in new window)</span>
+          </a>
+        </div>
       </li>
       <li class="card">
-        <h2><a href="/Social-Media-Accessibility-Checker-Extension">Social Media Accessibility Checker</a></h2>
+        <h2>Social Media Accessibility Checker</h2>
         <p>A browser extension to check a post's accessibility, including colour contrast in images.</p>
+        <div class="card-links">
+          <a href="https://github.com/timdixon82/Social-Media-Accessibility-Checker-Extension"
+             class="card-link card-link--github"
+             aria-label="Social Media Accessibility Checker on GitHub"
+             target="_blank" rel="noopener noreferrer">
+            GitHub<span class="visually-hidden"> (opens in new window)</span>
+          </a>
+        </div>
       </li>
       <li class="card">
-        <h2><a href="https://github.com/timdixon82/sophies-escape-witchs-castle" target="_blank" rel="noopener noreferrer">Sophie's Escape: The Witch's Castle<span class="visually-hidden"> (opens in new window)</span></a></h2>
+        <h2>Sophie's Escape: The Witch's Castle</h2>
         <p>A first-person browser 3D puzzle adventure. Ten rooms, inventory and hint system, full keyboard and touchscreen support, WCAG 2.2 AAA accessibility target.</p>
+        <div class="card-links">
+          <a href="https://projects.timdixon.net/sophies-escape-witchs-castle/"
+             class="card-link card-link--live"
+             aria-label="Sophie's Escape: The Witch's Castle — live site"
+             target="_blank" rel="noopener noreferrer">
+            Live site<span class="visually-hidden"> (opens in new window)</span>
+          </a>
+          <a href="https://github.com/timdixon82/sophies-escape-witchs-castle"
+             class="card-link card-link--github"
+             aria-label="Sophie's Escape: The Witch's Castle on GitHub"
+             target="_blank" rel="noopener noreferrer">
+            GitHub<span class="visually-hidden"> (opens in new window)</span>
+          </a>
+        </div>
       </li>
       <li class="card">
-        <h2><a href="https://github.com/timdixon82/SWOT-Builder" target="_blank" rel="noopener noreferrer"><abbr title="Strengths, Weaknesses, Opportunities, Threats">SWOT</abbr> Builder<span class="visually-hidden"> (opens in new window)</span></a></h2>
+        <h2><abbr title="Strengths, Weaknesses, Opportunities, Threats">SWOT</abbr> Builder</h2>
         <p>A guided <abbr title="Strengths, Weaknesses, Opportunities, Threats">SWOT</abbr> analysis interview that runs entirely in your browser. No server, no account, no data leaving your device.</p>
+        <div class="card-links">
+          <a href="https://projects.timdixon.net/SWOT-Builder/"
+             class="card-link card-link--live"
+             aria-label="SWOT Builder — live site"
+             target="_blank" rel="noopener noreferrer">
+            Live site<span class="visually-hidden"> (opens in new window)</span>
+          </a>
+          <a href="https://github.com/timdixon82/SWOT-Builder"
+             class="card-link card-link--github"
+             aria-label="SWOT Builder on GitHub"
+             target="_blank" rel="noopener noreferrer">
+            GitHub<span class="visually-hidden"> (opens in new window)</span>
+          </a>
+        </div>
       </li>
     </ul>
   </main>
