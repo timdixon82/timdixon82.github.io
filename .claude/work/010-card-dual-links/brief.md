@@ -4,7 +4,7 @@
 
 Update every project card in `index.html` to show two links: a live site link (GitHub Pages URL) and a GitHub repository link. Cards with no GitHub Pages URL show only the GitHub repository link.
 
-- Status: active
+- Status: done
 - Branch: feat/card-dual-links
 - Priority: 8
 - Blockers: None
