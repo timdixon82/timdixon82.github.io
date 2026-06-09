@@ -42,3 +42,6 @@ Token usage: Carol 77,700 tokens. contrast-master 28,878 tokens. Sean (fix) 23,6
 axe-core and Pa11y pass on all four themes after the --fg-muted fix. Zero violations. Four pre-existing Pa11y G17.Abs warnings on .visually-hidden spans (false positive; logged as low-priority Sean task).
 
 Carol signed off. PR #16 ready for Tim's merge approval.
+- [2026-06-08 23:52:25] subagent completed
+- [2026-06-09 00:13:23] subagent completed
+- [2026-06-09 00:25:34] subagent completed
