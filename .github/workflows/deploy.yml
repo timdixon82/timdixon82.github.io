@@ -132,9 +132,7 @@ jobs:
             # to the live site.
             rsync -a --prune-empty-dirs --safe-links \
                      --include='/index.html' \
-                     --include='/privacy.html' \
-                     --include='/tos.html' \
-                     --include='/styles.css' \
+                     --include='/soa/***' \
                      --include='/CNAME' \
                      --exclude='/assets/*.test.js' \
                      --include='/assets/***' \
