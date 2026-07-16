@@ -14,8 +14,8 @@ export default [
     ignores: ['assets/analytics/count.js', 'node_modules/**'],
   },
   {
-    files: ['*.js'],
-    ignores: ['eslint.config.js'],
+    files: ['*.js', 'assets/*.js'],
+    ignores: ['eslint.config.js', '**/*.test.js'],
     languageOptions: {
       ecmaVersion: 2020,
       sourceType: 'script',
@@ -28,6 +28,26 @@ export default [
       'no-eval': 'error',
       'no-implied-eval': 'error',
       'no-new-func': 'error',
+    },
+  },
+  {
+    files: ['**/*.test.js', 'vitest.config.js'],
+    languageOptions: {
+      ecmaVersion: 2022,
+      sourceType: 'module',
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        describe: 'readonly',
+        it: 'readonly',
+        beforeEach: 'readonly',
+        afterEach: 'readonly',
+      },
+    },
+    rules: {
+      'no-unused-vars': ['error', { caughtErrorsIgnorePattern: '^_' }],
+      'no-undef': 'error',
+      'eqeqeq': 'error',
     },
   },
 ];
