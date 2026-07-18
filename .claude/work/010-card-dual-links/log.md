@@ -16,3 +16,4 @@ Dispatching Sean to implement.
 Zero axe-core violations across all four themes. Pa11y zero errors. All 7 CI checks passed. 21 card links confirmed keyboard-reachable in document order. Carol signed off. PR #18 merged.
 
 Token usage: Sean 41,042. Carol 52,100.
+- [2026-06-09 10:17:46] subagent completed
