@@ -1,0 +1,23 @@
+# Filenames listed here (basename only, one per line) are never overwritten
+# by scripts/sync-from-template.sh. The project's own copy is kept.
+#
+# ci.yml, codeql.yml, lint.yml, security.yml, accessibility.yml,
+# release.yml: on 2026-07-19 these carried newer pinned GitHub Actions SHAs
+# than the team master template (from Dependabot pull requests #24 and
+# #25), so a sync would have silently reverted that work every time it
+# ran. Protecting them until the master template catches up. Remove this
+# protection once the master's action pins are current again.
+#
+# deploy.yml: carries this project's own custom includes -- /CNAME (serves
+# the custom domain projects.timdixon.net; see
+# docs/decisions/003-hosting-domain-headers.md) and /soa/*** (publishes
+# privacy.html and tos.html). The generic template variant does not know
+# about either path. A sync on 2026-07-19 would have dropped both and
+# broken the live deploy.
+accessibility.yml
+ci.yml
+codeql.yml
+deploy.yml
+lint.yml
+release.yml
+security.yml
