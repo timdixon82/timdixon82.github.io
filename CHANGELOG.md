@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/timdixon82/timdixon82.github.io/compare/v0.3.0...v0.3.1) (2026-07-23)
+
+
+### Bug Fixes
+
+* bump fast-uri to patch high-severity advisories ([#34](https://github.com/timdixon82/timdixon82.github.io/issues/34)) ([ba95202](https://github.com/timdixon82/timdixon82.github.io/commit/ba952023054b4137fbe41be78ecd57924be8259b))
+
 ## [0.3.0](https://github.com/timdixon82/timdixon82.github.io/compare/v0.2.0...v0.3.0) (2026-07-16)
 
 
