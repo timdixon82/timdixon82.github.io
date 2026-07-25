@@ -4,7 +4,7 @@
 
 Update every project card in `index.html` to show two links: a live site link (GitHub Pages URL) and a GitHub repository link. Cards with no GitHub Pages URL show only the GitHub repository link.
 
-- Status: done
+- Status: archived
 - Branch: feat/card-dual-links
 - Priority: 8
 - Blockers: None
@@ -21,15 +21,15 @@ Low. HTML-only change. Rollback: revert before merge.
 
 ## Definition of done
 
-- [ ] Every card h2 is plain text (not a link)
-- [ ] Every card has a `.card-links` section after the description paragraph
-- [ ] Cards with a Pages URL show a "Live site" link and a "GitHub" link
-- [ ] Cards without a Pages URL show only a "GitHub" link
-- [ ] All links have descriptive `aria-label` attributes giving the project name in context
-- [ ] External links (GitHub repo, and any Pages URL not on projects.timdixon.net) carry `target="_blank" rel="noopener noreferrer"` and a visually-hidden "(opens in new window)" span
-- [ ] `.card-links` CSS added to the inline style block
-- [ ] WCAG 2.2 AAA passes with axe-core and Pa11y
-- [ ] Carol signs off
+- [x] Every card h2 is plain text (not a link)
+- [x] Every card has a `.card-links` section after the description paragraph
+- [x] Cards with a Pages URL show a "Live site" link and a "GitHub" link
+- [x] Cards without a Pages URL show only a "GitHub" link
+- [x] All links have descriptive `aria-label` attributes giving the project name in context
+- [x] External links (GitHub repo, and any Pages URL not on projects.timdixon.net) carry `target="_blank" rel="noopener noreferrer"` and a visually-hidden "(opens in new window)" span
+- [x] `.card-links` CSS added to the inline style block
+- [x] WCAG 2.2 AAA passes with axe-core and Pa11y
+- [x] Carol signs off
 
 ## Pre-approved GitHub actions
 

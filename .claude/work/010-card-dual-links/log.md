@@ -17,3 +17,7 @@ Zero axe-core violations across all four themes. Pa11y zero errors. All 7 CI che
 
 Token usage: Sean 41,042. Carol 52,100.
 - [2026-06-09 10:17:46] subagent completed
+
+## [2026-07-25] archive | Confirmed live and closed out
+
+Verified PR #18 merged to main (2026-06-09) and dual-link markup present in the live `index.html` (`.card-links`, "Live site"/"GitHub" links, visually-hidden "opens in new window" spans). All definition-of-done items checked off. Status set to archived.
