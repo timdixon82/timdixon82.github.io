@@ -4,7 +4,7 @@
 
 Add a project card for Emotion Wheel to `index.html`, using the same dual-link card pattern (live site + GitHub repo) established in work folder 010.
 
-- Status: active
+- Status: done
 - Branch: feat/emotion-wheel-card
 - Mockup mode: D (no mockup — reuses the existing established card pattern)
 - Priority: 8
@@ -42,14 +42,14 @@ Rollback: revert the branch commit before merge; no production impact until merg
 
 ## Definition of done
 
-- [ ] New card added to `index.html` with plain-text `<h2>` (not a link)
-- [ ] Card has a `.card-links` section after the description paragraph, matching the existing pattern exactly
-- [ ] Card shows both a "Live site" link (`https://emotionwheel.timdixon.net/`) and a "GitHub" link (`https://github.com/timdixon82/Emotion-Wheel`)
-- [ ] Both links have descriptive `aria-label` attributes naming "Emotion Wheel" in context
-- [ ] Both links carry `target="_blank" rel="noopener noreferrer"` and a visually-hidden "(opens in new window)" span
-- [ ] No changes made to any file other than `index.html`
-- [ ] WCAG 2.2 AAA passes with axe-core and Pa11y
-- [ ] Carol signs off on functional and accessibility passes
+- [x] New card added to `index.html` with plain-text `<h2>` (not a link)
+- [x] Card has a `.card-links` section after the description paragraph, matching the existing pattern exactly
+- [x] Card shows both a "Live site" link (`https://emotionwheel.timdixon.net/`) and a "GitHub" link (`https://github.com/timdixon82/Emotion-Wheel`)
+- [x] Both links have descriptive `aria-label` attributes naming "Emotion Wheel" in context
+- [x] Both links carry `target="_blank" rel="noopener noreferrer"` and a visually-hidden "(opens in new window)" span
+- [x] No changes made to any file other than `index.html`
+- [x] WCAG 2.2 AAA passes with axe-core and Pa11y
+- [x] Carol signs off on functional and accessibility passes
 
 ## Approved GitHub actions
 
