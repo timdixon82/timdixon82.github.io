@@ -4,7 +4,7 @@
 
 Add a project card for Emotion Wheel to `index.html`, using the same dual-link card pattern (live site + GitHub repo) established in work folder 010.
 
-- Status: done
+- Status: archived
 - Branch: feat/emotion-wheel-card
 - Mockup mode: D (no mockup — reuses the existing established card pattern)
 - Priority: 8
