@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/timdixon82/timdixon82.github.io/compare/v0.3.1...v0.4.0) (2026-07-25)
+
+
+### Features
+
+* add Emotion Wheel project card ([4514f34](https://github.com/timdixon82/timdixon82.github.io/commit/4514f34c7e89d62e4b0e6eb234f03f8d9951b22f))
+
 ## [0.3.1](https://github.com/timdixon82/timdixon82.github.io/compare/v0.3.0...v0.3.1) (2026-07-23)
 
 
