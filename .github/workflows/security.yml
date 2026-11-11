@@ -120,7 +120,11 @@ jobs:
             else
               : > "${ignorefile}"
             fi
-            args+=(--config "${config}" --gitleaks-ignore-path "${ignorefile}" --log-opts="${PR_BASE_SHA}..${PR_HEAD_SHA}")
+            # git log -p shows nothing for merge commits by default, so a secret added
+            # in a merge (conflict resolution) would go unscanned. --diff-merges=first-parent
+            # shows each merge's diff against its first parent. gitleaks splits
+            # --log-opts on spaces, so the option and the range stay in one argument.
+            args+=(--config "${config}" --gitleaks-ignore-path "${ignorefile}" --log-opts="--diff-merges=first-parent ${PR_BASE_SHA}..${PR_HEAD_SHA}")
           fi
           rc=0
           "${RUNNER_TEMP}/gitleaks-bin/gitleaks" "${args[@]}" . || rc=$?
