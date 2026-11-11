@@ -110,6 +110,14 @@ jobs:
             # from the pull request, so a PR cannot switch off its own scan.
             config="${RUNNER_TEMP}/gitleaks-base.toml"
             ignorefile="${RUNNER_TEMP}/gitleaks-base.ignore"
+            # gitleaks also reads .gitleaksignore from the scanned folder, not only
+            # from --gitleaks-ignore-path. Delete the checkout's copy so the PR's
+            # own file is never read. This hides nothing: the scan reads git history,
+            # not the working tree. -f keeps the step passing when the file is absent.
+            rm -f .gitleaksignore
+            # A base .gitleaks.toml must keep "[extend]" with "useDefault = true".
+            # Without it the base config replaces the default rules and the scan
+            # would detect only what that file defines.
             if git cat-file -e "${PR_BASE_SHA}:.gitleaks.toml" 2>/dev/null; then
               git show "${PR_BASE_SHA}:.gitleaks.toml" > "${config}"
             else
