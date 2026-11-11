@@ -16,7 +16,7 @@
 # The npm steps are gated on a root package.json, so a static-content
 # project (no manifest, no build) does not fail this workflow for lacking
 # one. That archetype instead gets an HTML/CSS-validation-only path, using
-# a pinned tool manifest at .github/lint-tools/package.json — the same
+# a pinned tool manifest at ci-tools/lint-tools/package.json — the same
 # pattern accessibility.yml uses for its accessibility tools — so
 # Dependabot can still track and bump the validators' versions.
 #
@@ -48,7 +48,7 @@ jobs:
         with:
           node-version: lts/*
           cache: npm
-          cache-dependency-path: .github/lint-tools/package-lock.json
+          cache-dependency-path: ci-tools/lint-tools/package-lock.json
 
       - name: Install dependencies
         if: hashFiles('package.json') != ''
@@ -66,20 +66,20 @@ jobs:
       - name: Install HTML/CSS validation tools (static-content)
         if: hashFiles('package.json') == ''
         run: npm ci
-        working-directory: .github/lint-tools
+        working-directory: ci-tools/lint-tools
 
       - name: Add validation tools to PATH
         if: hashFiles('package.json') == ''
-        run: echo "$GITHUB_WORKSPACE/.github/lint-tools/node_modules/.bin" >> "$GITHUB_PATH"
+        run: echo "$GITHUB_WORKSPACE/ci-tools/lint-tools/node_modules/.bin" >> "$GITHUB_PATH"
 
       - name: Validate HTML (static-content)
         if: hashFiles('package.json') == ''
         run: |
-          find . -name '*.html' -not -path './.git/*' -not -path './.github/*' -not -path './node_modules/*' -print0 \
-            | xargs -0 --no-run-if-empty html-validate --config .github/lint-tools/.htmlvalidate.json
+          find . -name '*.html' -not -path './.git/*' -not -path './.github/*' -not -path './ci-tools/*' -not -path './node_modules/*' -print0 \
+            | xargs -0 --no-run-if-empty html-validate --config ci-tools/lint-tools/.htmlvalidate.json
 
       - name: Validate CSS (static-content)
         if: hashFiles('package.json') == ''
         run: |
-          find . -name '*.css' -not -path './.git/*' -not -path './.github/*' -not -path './node_modules/*' -print0 \
-            | xargs -0 --no-run-if-empty stylelint --config .github/lint-tools/.stylelintrc.json
+          find . -name '*.css' -not -path './.git/*' -not -path './.github/*' -not -path './ci-tools/*' -not -path './node_modules/*' -print0 \
+            | xargs -0 --no-run-if-empty stylelint --config ci-tools/lint-tools/.stylelintrc.json

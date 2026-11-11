@@ -9,3 +9,7 @@ Tad scaffolded the project wiki as part of work 007-timdixon-site-setup, the ado
 Decisions recorded in this scaffold: Q18A (LLBS card kept with clearer text), Q19 (projects list left as-is, review deferred), Q20A (Poop Breakout card kept), Q21 (GoatCounter analytics in all projects), Q22 (contact link to `https://www.timdixon.net/contact/`), Q23 (brand fonts covered by Tim Dixon Design System decision). The broken-link finding (`/LLBS-Braile-Name-Generator` spelling) is in `todo.md`.
 
 Commit on branch `chore/project-setup`. No push. No pull request opened.
+
+## [2026-11-11] migrate | CI tool folders moved to ci-tools
+
+Moved `.github/lint-tools` and `.github/accessibility-tools` to `ci-tools/` (Decision 021) so Dependabot can create npm update pull requests. Both npm entries in `.github/dependabot.yml` and the protected lint and accessibility workflows were updated by hand.
