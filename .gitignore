@@ -67,3 +67,9 @@ pa11y.ci.json
 # These are ephemeral test artefacts, not project assets.
 .playwright-mcp/
 *.png
+
+# Local audit trail written by a team hook, not for the repository
+/lint.md
+
+# Local audit trail written by a team hook, not for the repository
+.claude/.status-rebuild.lock
